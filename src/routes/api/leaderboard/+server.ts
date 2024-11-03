@@ -1,6 +1,6 @@
 import type { LeaderboardEntry } from '$lib/types';
 import { json } from '@sveltejs/kit';
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 
 /* eslint-disable */
 function check(data: any): string {
