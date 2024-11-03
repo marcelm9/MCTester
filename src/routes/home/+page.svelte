@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+
+	function training() {
+		window.open(
+			'https://vowi.fsinf.at/wiki/TU_Wien:Daten-_und_Informatikrecht_VU_(Haslinger)/Fragen_Pr%C3%BCfung_04.07.2024',
+			'_blank'
+		);
+	}
 </script>
 
 <main>
@@ -9,6 +16,7 @@
 		</div>
 	</div>
 	<inner>
+		<button class="button-primary mr-4" on:click={training}>Training</button>
 		<button
 			class="button-primary"
 			on:click={() => {

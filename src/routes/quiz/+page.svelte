@@ -87,7 +87,8 @@
 						</label>
 					</form>
 				{/each}
-				<div class="mt-8 flex justify-end">
+				<div class="footer">
+					<button class="button-secondary" on:click={() => goto('/home')}>Quit</button>
 					<button class="button-primary" on:click={next}>Next</button>
 				</div>
 			{/if}
@@ -135,6 +136,12 @@
 		display: block;
 		margin: auto;
 		max-width: var(--max-width);
+	}
+
+	.footer {
+		display: flex;
+		margin-top: 2rem;
+		justify-content: space-between;
 	}
 
 	.checkbox-group {
