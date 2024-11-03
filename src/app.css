@@ -27,3 +27,12 @@ body {
 .button-secondary:hover {
 	@apply bg-gray-400;
 }
+
+.error-message {
+	border: 1px solid red;
+	background: rgba(255, 0, 0, 0.2);
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	color: white;
+	width: fit-content;
+}

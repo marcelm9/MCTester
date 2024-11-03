@@ -3,3 +3,11 @@ export type Question = {
 	question: string;
 	answers: [boolean, string][];
 };
+
+export type LeaderboardEntry = {
+	id: number;
+	name: string;
+	points: number;
+	time: number;
+	rank?: number;
+};

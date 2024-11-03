@@ -16,13 +16,14 @@
 		</div>
 	</div>
 	<inner>
-		<button class="button-primary mr-4" on:click={training}>Training</button>
 		<button
-			class="button-primary"
+			class="button-primary mr-4"
 			on:click={() => {
 				goto('/quiz');
 			}}>Start Quiz</button
 		>
+		<button class="button-secondary mr-4" on:click={training}>Training</button>
+		<button class="button-secondary mr-4" on:click={() => goto('/leaderboard')}>Leaderboard</button>
 	</inner>
 </main>
 

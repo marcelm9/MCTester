@@ -12,6 +12,11 @@
 	let done = false;
 	let points = 0;
 
+	let start_time;
+	let end_time;
+
+	let error = '';
+
 	onMount(async () => {
 		const response = await fetch('/api/questions');
 		content = await response.json();
@@ -21,6 +26,8 @@
 		// for (let i = 0; i < 15; i++) {
 		// 	next();
 		// }
+
+		start_time = Date.now();
 	});
 
 	function checkAnswers() {
@@ -51,6 +58,27 @@
 			current = content[current_i];
 		} else {
 			done = true;
+			end_time = Date.now();
+		}
+	}
+
+	async function publish() {
+		error = '';
+		const name = (document.getElementById('name-input') as HTMLInputElement).value;
+		if (!name || name.trim() === '') {
+			error = 'no name given';
+			return;
+		}
+		const response = await fetch('/api/leaderboard', {
+			method: 'POST',
+			body: JSON.stringify({ name, points, time: (end_time! - start_time!) / 1000 })
+		});
+
+		if (response.status === 200) {
+			goto('/leaderboard');
+		} else {
+			const data = await response.json();
+			error = data.message;
 		}
 	}
 </script>
@@ -93,13 +121,32 @@
 				</div>
 			{/if}
 		{:else}
-			<div class="text-5xl text-white">Your points: {points} / {content.length}</div>
+			<div class="mb-8 text-4xl text-white">Your Result</div>
+
+			<div class="g mt-8 text-white">
+				<div>
+					<input
+						id="name-input"
+						class="text-2xl"
+						type="text"
+						placeholder="Name"
+						pattern="^[a-zA-Z]+$"
+					/>
+				</div>
+				<div class="text-2xl">{points} / {content.length}</div>
+				<div class="text-2xl">{((end_time! - start_time!) / 1000).toFixed(2)} s</div>
+			</div>
+
 			<button
-				class="button-primary mt-8"
+				class="button-secondary mr-4 mt-8"
 				on:click={() => {
-					goto('/');
+					goto('/home');
 				}}>Restart</button
 			>
+			<button class="button-primary mr-4 mt-8" on:click={publish}>Publish Result</button>
+			{#if error !== ''}
+				<p class="error-message mt-4">{error}</p>
+			{/if}
 		{/if}
 	</inner>
 </main>
@@ -144,6 +191,13 @@
 		justify-content: space-between;
 	}
 
+	.g {
+		display: grid;
+		grid-template-columns: 3fr 1fr 1fr;
+		border: 1px solid white;
+		outline: 1px solid white;
+	}
+
 	.checkbox-group {
 		display: flex;
 		flex-direction: column;
@@ -185,5 +239,22 @@
 	/* Checked style */
 	.checkbox-wrapper input[type='checkbox']:checked + .checkbox-label .circle {
 		background-color: #007bff; /* Blue color for checked state */
+	}
+
+	.g > div {
+		padding: 0.5rem;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		outline: 1px solid white;
+	}
+
+	input {
+		width: 100%;
+		height: 100%;
+		border: none;
+		color: black;
+		border-radius: 0.25rem;
 	}
 </style>
