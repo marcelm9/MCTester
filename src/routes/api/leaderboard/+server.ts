@@ -25,6 +25,10 @@ function check(data: any): string {
 		return "'name' must not be empty";
 	}
 
+	if (data.name.length > 25) {
+		return "'name' must not be longer than 25 characters";
+	}
+
 	return '';
 }
 
