@@ -70,7 +70,7 @@
 			error = 'no name given';
 			return;
 		}
-		const response = await fetch('/api/leaderboard', {
+		const response = await fetch('/api/0dbdb147-b42f-4a45-81d0-d8c97966bd92', {
 			method: 'POST',
 			body: JSON.stringify({ name, points, time: (end_time! - start_time!) / 1000 })
 		});
