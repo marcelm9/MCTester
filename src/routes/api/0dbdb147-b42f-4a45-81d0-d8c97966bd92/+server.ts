@@ -32,21 +32,6 @@ function check(data: any): string {
 	return '';
 }
 
-export async function GET() {
-	let data;
-	try {
-		data = await fs.promises.readFile('./leaderboard.json', 'utf8');
-	} catch {
-		data = '[]';
-	}
-
-	let leaderboard: LeaderboardEntry[] = JSON.parse(data);
-
-	return json(
-		leaderboard.toSorted((a, b) => a.time - b.time).toSorted((a, b) => b.points - a.points)
-	);
-}
-
 export async function POST({ request }) {
 	let data_recv;
 	try {
