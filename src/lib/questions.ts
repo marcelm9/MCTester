@@ -125,7 +125,7 @@ ND - Verbietet Ableitungen des Werkes`
 	{
 		id: 10,
 		question:
-			'Wie muss der Databridge gemeldet werden? Wie schnell ist die Behörde zu informieren?',
+			'Wie muss ein Data-Breach gemeldet werden? Wie schnell ist die Behörde zu informieren?',
 		answers: [
 			[true, 'Die Datenschutzbehörde ist unverzüglich zu informieren'],
 			[false, 'Ich behebe zuerst den Fehler und informiere dann die Datenschutzbehörde'],

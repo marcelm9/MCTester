@@ -1,11 +1,12 @@
 {
   "name": "DIR",
   "short_name": "DIR",
+	"description": "Daten- und Informatikrecht Quiz",
   "theme_color": "#333",
-  "background_color": "#333",
-  "display": "standalone",
-  "scope": "/",
+	"display": "standalone",
+	"orientation": "portrait",
   "start_url": "/home",
+  "scope": "/",
   "icons": [
     {
       "src": "image192.png",
