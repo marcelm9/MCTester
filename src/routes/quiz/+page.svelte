@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import Header from '$lib/Header.svelte';
 	import type { Question } from '$lib/types';
 	import { onMount } from 'svelte';
 
@@ -84,25 +85,19 @@
 </script>
 
 <main>
-	<div class="header">
-		<div class="header-inner">
-			<div class="text-xl text-white">
-				{#if done}
-					Daten- und Informatikrecht
-				{:else if current}
-					Question {current_i + 1} of {content.length}
-				{:else}
-					Loading ...
-				{/if}
-			</div>
-		</div>
-	</div>
+	{#if done}
+		<Header text="Daten- und Informatikrecht" />
+	{:else if current}
+		<Header text="Question {current_i + 1} of {content.length}" />
+	{:else}
+		<Header text="Loading ..." />
+	{/if}
 	<inner>
 		{#if !done}
 			{#if !current}
 				<p class="text-white">Loading ...</p>
 			{:else}
-				<div class="mb-8 text-4xl text-white">{current.question}</div>
+				<div class="mb-4 text-2xl text-white">{current.question}</div>
 
 				{#each current.answers as answer}
 					<form class="checkbox-group">
@@ -127,21 +122,21 @@
 				<div>
 					<input
 						id="name-input"
-						class="text-2xl"
+						class="text-lg"
 						type="text"
 						placeholder="Name"
 						pattern="^[a-zA-Z]+$"
 					/>
 				</div>
-				<div class="text-2xl">{points} / {content.length}</div>
-				<div class="text-2xl">{((end_time! - start_time!) / 1000).toFixed(2)} s</div>
+				<div class="text-lg">{points} / {content.length}</div>
+				<div class="text-lg">{((end_time! - start_time!) / 1000).toFixed(2)} s</div>
 			</div>
 
 			<button
 				class="button-secondary mr-4 mt-8"
 				on:click={() => {
 					goto('/home');
-				}}>Restart</button
+				}}>Home</button
 			>
 			<button class="button-primary mr-4 mt-8" on:click={publish}>Publish Result</button>
 			{#if error !== ''}
@@ -152,48 +147,22 @@
 </main>
 
 <style>
-	.header {
-		height: 3rem;
-		background: linear-gradient(
-			90deg,
-			rgba(2, 0, 36, 1) 0%,
-			rgba(9, 9, 121, 1) 35%,
-			rgba(0, 212, 255, 1) 100%
-		);
-		margin-bottom: 2rem;
-	}
-
-	.header-inner {
-		max-width: var(--max-width);
-		height: 100%;
-		margin: auto;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	main {
-		display: block;
-		height: 100%;
-		background: linear-gradient(45deg, rgba(50, 50, 50, 1) 0%, rgba(100, 100, 100, 1) 100%);
-	}
-
 	inner {
 		display: block;
 		margin: auto;
 		max-width: var(--max-width);
+		padding: 1rem;
 	}
 
 	.footer {
 		display: flex;
-		margin-top: 2rem;
+		margin-top: 1rem;
 		justify-content: space-between;
 	}
 
 	.g {
 		display: grid;
-		grid-template-columns: 3fr 1fr 1fr;
+		grid-template-columns: 2fr 1fr 1fr;
 		border: 1px solid white;
 		outline: 1px solid white;
 	}
@@ -208,6 +177,9 @@
 		align-items: center;
 		margin-bottom: 0.5rem;
 		cursor: pointer;
+		border: 1px solid rgb(100, 100, 100);
+		padding: 0.5rem;
+		border-radius: 0.5rem;
 	}
 
 	.checkbox-wrapper input[type='checkbox'] {
@@ -233,7 +205,6 @@
 		width: 1.5rem;
 		border-radius: 50%;
 		background-color: black;
-		transition: background-color 0.3s ease;
 	}
 
 	/* Checked style */

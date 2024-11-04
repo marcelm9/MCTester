@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import Header from '$lib/Header.svelte';
 	import type { LeaderboardEntry } from '$lib/types';
 	import { onMount } from 'svelte';
 
@@ -17,16 +18,13 @@
 </script>
 
 <main>
-	<div class="header">
-		<div class="header-inner">
-			<div class="text-xl text-white">Daten- und Informatikrecht</div>
-		</div>
-	</div>
+	<Header text="Daten- und Informatikrecht" />
 	<inner>
 		{#if loading}
 			<p class="text-white">Loading ...</p>
 		{:else}
-			<div class="mb-8 text-4xl text-white">Leaderboard</div>
+			<div class="text-4xl text-white">Leaderboard</div>
+			<div class="mb-4 text-sm text-gray-400">Top 25</div>
 
 			{#if leaderboard.length === 0}
 				<p class="text-white">No entries yet</p>
@@ -37,7 +35,7 @@
 							<div>{entry.rank}</div>
 							<div>{entry.name}</div>
 							<div>{entry.points}</div>
-							<div>{entry.time.toFixed(2)}</div>
+							<div>{entry.time.toFixed(2)} s</div>
 						</div>
 					{/each}
 				</div>
@@ -50,48 +48,22 @@
 </main>
 
 <style>
-	.header {
-		height: 3rem;
-		background: linear-gradient(
-			90deg,
-			rgba(2, 0, 36, 1) 0%,
-			rgba(9, 9, 121, 1) 35%,
-			rgba(0, 212, 255, 1) 100%
-		);
-		margin-bottom: 2rem;
-	}
-
-	.header-inner {
-		max-width: var(--max-width);
-		height: 100%;
-		margin: auto;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	main {
-		display: block;
-		height: 100%;
-		background: linear-gradient(45deg, rgba(50, 50, 50, 1) 0%, rgba(100, 100, 100, 1) 100%);
-	}
-
 	inner {
 		display: block;
 		margin: auto;
 		max-width: var(--max-width);
+		padding: 1rem;
 	}
 
 	.footer {
 		display: flex;
-		margin-top: 2rem;
+		margin-top: 1rem;
 		justify-content: space-between;
 	}
 
 	.g {
 		display: grid;
-		grid-template-columns: 3rem 3fr 1fr 1fr;
+		grid-template-columns: 3rem 9fr 2fr 5fr;
 		border-left: 1px solid white;
 	}
 
@@ -108,6 +80,5 @@
 		color: white;
 		border-right: 1px solid white;
 		border-bottom: 1px solid white;
-		font-size: 1.5rem;
 	}
 </style>

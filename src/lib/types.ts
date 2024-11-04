@@ -5,7 +5,6 @@ export type Question = {
 };
 
 export type LeaderboardEntry = {
-	id: number;
 	name: string;
 	points: number;
 	time: number;

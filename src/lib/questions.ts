@@ -96,7 +96,8 @@ ND - Verbietet Ableitungen des Werkes`
 	},
 	{
 		id: 8,
-		question: 'Fallbeispiel /// In welchem Jahr erlischt das Urheberrecht des Werkes X?',
+		question:
+			'Fallbeispiel /// In welchem Jahr erlischt das Urheberrecht des Werkes X, wenn der Urheber im Jahr 2014 verstorben ist?',
 		answers: [
 			[true, '2084'],
 			[false, '2071'],

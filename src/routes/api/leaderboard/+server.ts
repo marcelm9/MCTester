@@ -29,7 +29,13 @@ function check(data: any): string {
 }
 
 export async function GET() {
-	const data = await fs.promises.readFile('./leaderboard.json', 'utf8');
+	let data;
+	try {
+		data = await fs.promises.readFile('./leaderboard.json', 'utf8');
+	} catch {
+		data = '[]';
+	}
+
 	let leaderboard: LeaderboardEntry[] = JSON.parse(data);
 
 	return json(
@@ -38,21 +44,33 @@ export async function GET() {
 }
 
 export async function POST({ request }) {
-	let data;
+	let data_recv;
 	try {
-		data = await request.json();
+		data_recv = await request.json();
 	} catch {
 		return json({ message: 'data missing' }, { status: 400 });
 	}
 
 	let error;
-	if ((error = check(data)) !== '') {
+	if ((error = check(data_recv)) !== '') {
 		return json({ message: error }, { status: 400 });
 	}
 
-	const oldData = JSON.parse(await fs.promises.readFile('./leaderboard.json', 'utf8'));
-	const newData = [...oldData, data];
-	await fs.promises.writeFile('./leaderboard.json', JSON.stringify(newData));
+	let data_read;
+	try {
+		data_read = await fs.promises.readFile('./leaderboard.json', 'utf8');
+	} catch {
+		data_read = '[]';
+	}
+
+	const leaderboard: LeaderboardEntry[] = JSON.parse(data_read);
+	leaderboard.push({ name: data_recv.name, points: data_recv.points, time: data_recv.time });
+
+	const new_data = leaderboard
+		.toSorted((a, b) => a.time - b.time)
+		.toSorted((a, b) => b.points - a.points);
+
+	await fs.promises.writeFile('./leaderboard.json', JSON.stringify(new_data.slice(0, 25)));
 
 	return json(null, { status: 200 });
 }

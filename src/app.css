@@ -6,10 +6,13 @@
 	--max-width: 800px;
 }
 
-html,
-body {
-	height: 100%;
+html {
 	margin: 0;
+	background-color: rgb(60, 60, 60);
+}
+body {
+	margin: 0;
+	padding: 0;
 }
 
 .button-primary {
@@ -30,7 +33,7 @@ body {
 
 .error-message {
 	border: 1px solid red;
-	background: rgba(255, 0, 0, 0.2);
+	background-color: rgba(255, 0, 0, 0.2);
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	color: white;
