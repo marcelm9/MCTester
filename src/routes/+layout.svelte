@@ -11,4 +11,9 @@
 	});
 </script>
 
+<svelte:head>
+	<link rel="manifest" href="/manifest.json" />
+	<title>DIR Quiz</title>
+</svelte:head>
+
 {@render children()}
