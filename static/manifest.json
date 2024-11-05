@@ -1,22 +1,22 @@
 {
-  "name": "DIR",
-  "short_name": "DIR",
+	"name": "DIR",
+	"short_name": "DIR",
 	"description": "Daten- und Informatikrecht Quiz",
-  "theme_color": "#333",
+	"theme_color": "#333",
 	"display": "standalone",
 	"orientation": "portrait",
-  "start_url": "/home",
-  "scope": "/",
-  "icons": [
-    {
-      "src": "image192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "image512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+	"start_url": "/home",
+	"scope": "/",
+	"icons": [
+		{
+			"src": "image192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "image512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
 }

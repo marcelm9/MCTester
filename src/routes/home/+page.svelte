@@ -19,10 +19,23 @@
 				goto('/quiz');
 			}}>Start Quiz</button
 		>
-		<button class="button-secondary mb-3 mr-2" on:click={training}>Training</button>
-		<button class="button-secondary mb-3 mr-2" on:click={() => goto('/leaderboard')}
-			>Leaderboard</button
+		<button
+			class="button-secondary mb-3 mr-2 border-2 border-blue-800"
+			on:click={() => goto('/leaderboard')}>Leaderboard</button
 		>
+		<br />
+		<button
+			class="button-danger mb-3 mr-2"
+			on:click={() => {
+				goto('/quiz/hard');
+			}}>Start Quiz</button
+		>
+		<button
+			class="button-secondary mb-3 mr-2 border-2 border-red-800"
+			on:click={() => goto('/leaderboard/hard')}>Leaderboard</button
+		>
+		<br />
+		<button class="button-secondary mb-3 mr-2" on:click={training}>Training</button>
 	</inner>
 </main>
 

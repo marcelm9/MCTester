@@ -5,7 +5,7 @@ import * as fs from 'node:fs';
 export async function GET() {
 	let data;
 	try {
-		data = await fs.promises.readFile('./leaderboard.json', 'utf8');
+		data = await fs.promises.readFile('./leaderboard_hard.json', 'utf8');
 	} catch {
 		data = '[]';
 	}

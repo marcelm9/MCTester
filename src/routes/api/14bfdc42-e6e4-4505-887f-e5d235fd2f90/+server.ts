@@ -1,4 +1,4 @@
-// REGULAR //
+// HARD //
 
 import type { LeaderboardEntry } from '$lib/types';
 import { json } from '@sveltejs/kit';
@@ -49,7 +49,7 @@ export async function POST({ request }) {
 
 	let data_read;
 	try {
-		data_read = await fs.promises.readFile('./leaderboard.json', 'utf8');
+		data_read = await fs.promises.readFile('./leaderboard_hard.json', 'utf8');
 	} catch {
 		data_read = '[]';
 	}
@@ -61,7 +61,7 @@ export async function POST({ request }) {
 		.toSorted((a, b) => a.time - b.time)
 		.toSorted((a, b) => b.points - a.points);
 
-	await fs.promises.writeFile('./leaderboard.json', JSON.stringify(new_data.slice(0, 25)));
+	await fs.promises.writeFile('./leaderboard_hard.json', JSON.stringify(new_data.slice(0, 25)));
 
 	return json(null, { status: 200 });
 }
