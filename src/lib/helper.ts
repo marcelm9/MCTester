@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 
 export function ban_ip(ip: string) {
     const banned_ips = JSON.parse(fs.readFileSync('./bans.json', 'utf8'));
