@@ -43,10 +43,6 @@ export async function POST({ request, locals }) {
 		return json({ message: 'data missing' }, { status: 400 });
 	}
 
-	if (is_banned(locals.ip)) {
-		return json(null, { status: 200 }); // intentionally misleading
-	}
-
 	let error;
 	if ((error = check(data_recv)) !== '') {
 		return json({ message: error }, { status: 400 });
