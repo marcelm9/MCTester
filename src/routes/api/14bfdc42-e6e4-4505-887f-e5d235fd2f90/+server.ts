@@ -75,7 +75,7 @@ export async function POST({ request, locals }) {
 	await fs.promises.writeFile('./leaderboard_hard.json', JSON.stringify(new_data.slice(0, 25)));
 
 	if (new_data.slice(0, 25).find((x) => x.name === data_recv.name)) {
-		console.log(`(hard) New leaderboard entry: ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
+		console.log(`(hard) New leaderboard entry from ${locals.ip}: ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
 	}
 	return json(null, { status: 200 });
 }
