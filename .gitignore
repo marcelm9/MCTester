@@ -21,3 +21,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /leaderboard.json
 /leaderboard_hard.json
+/bans.json
