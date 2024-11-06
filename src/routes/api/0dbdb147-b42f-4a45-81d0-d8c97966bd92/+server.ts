@@ -59,7 +59,7 @@ export async function POST({ request, locals }) {
 		data_read = '[]';
 	}
 
-	if (data_recv.points < 0 || data_recv.points > 15 || data_recv.time < 10) {
+	if (data_recv.points < 0 || data_recv.points > 15 || (data_recv.time * 0.75 < data_recv.points)) {
 		ban_ip(locals.ip);
 		console.log(`Banned ip ${locals.ip} ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
 		return json(null, { status: 200 }); // intentionally misleading
