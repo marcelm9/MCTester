@@ -209,7 +209,7 @@
 
 	/* Checked style */
 	.checkbox-wrapper input[type='checkbox']:checked + .checkbox-label .circle {
-		background-color: #007bff; /* Blue color for checked state */
+		@apply bg-red-700;
 	}
 
 	.g > div {
