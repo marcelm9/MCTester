@@ -1,6 +1,6 @@
 // REGULAR //
 
-import { ban_ip, is_banned } from '$lib/helper.js';
+import { ban_ip, log_leaderboard_entry } from '$lib/helper.js';
 import type { LeaderboardEntry } from '$lib/types';
 import { json } from '@sveltejs/kit';
 import * as fs from 'node:fs';
@@ -72,6 +72,7 @@ export async function POST({ request, locals }) {
 
 	if (new_data.slice(0, 25).find((x) => x.name === data_recv.name)) {
 		console.log(`New leaderboard entry from ${locals.ip}: ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
+		log_leaderboard_entry(locals.ip, data_recv.name, data_recv.points, data_recv.time, 'regular');
 	}
 	return json(null, { status: 200 });
 }
