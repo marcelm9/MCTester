@@ -216,18 +216,12 @@ export const questions_hard: Question[] = [];
 
 const char = '#';
 
-// const show_every_nth_char = 2;
-// function replace(c: string, i: number) {
-// 	return c === ' ' ? ' ' : ((i + 1) % show_every_nth_char ? char : c);
-// }
-
 for (const q of questions) {
 	const id = q.id;
 	const question = q.question;
 	const answers: [boolean, string][] = [];
 
 	for (let i = 0; i < q.answers.length; i++) {
-		// answers.push([q.answers[i][0], q.answers[i][1].split('').map(replace).join('')])
 		answers.push([q.answers[i][0], q.answers[i][1].replace(/[^0-9\s]/g, char)]);
 	}
 

@@ -55,9 +55,11 @@ export async function POST({ request, locals }) {
 		data_read = '[]';
 	}
 
-	if (data_recv.points < 0 || data_recv.points > 15 || (data_recv.time * 0.75 < data_recv.points)) {
+	if (data_recv.points < 0 || data_recv.points > 15 || data_recv.time * 0.75 < data_recv.points) {
 		ban_ip(locals.ip);
-		console.log(`Banned ip ${locals.ip} ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
+		console.log(
+			`Banned ip ${locals.ip} ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`
+		);
 		return json(null, { status: 200 }); // intentionally misleading
 	}
 
@@ -71,7 +73,9 @@ export async function POST({ request, locals }) {
 	await fs.promises.writeFile('./leaderboard.json', JSON.stringify(new_data.slice(0, 25)));
 
 	if (new_data.slice(0, 25).find((x) => x.name === data_recv.name)) {
-		console.log(`New leaderboard entry from ${locals.ip}: ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`);
+		console.log(
+			`New leaderboard entry from ${locals.ip}: ( ${data_recv.name} | ${data_recv.points} | ${data_recv.time} )`
+		);
 		log_leaderboard_entry(locals.ip, data_recv.name, data_recv.points, data_recv.time, 'regular');
 	}
 	return json(null, { status: 200 });
